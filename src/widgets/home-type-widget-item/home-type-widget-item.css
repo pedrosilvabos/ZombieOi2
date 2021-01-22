@@ -1,0 +1,27 @@
+/* homeTypeWidgetItem widget
+*******************************/
+
+.w-home-type-widget-item {
+    margin-top: 10px;
+    display: table-cell;
+}
+
+.w-home-type-widget-item._active {
+    border: 3px solid red;
+}
+.w-home-type-widget-item__wrap {
+    width: 150px;
+    height: 175px;
+    border: 3px solid green;
+    border-radius: 5px;
+}
+.w-home-type-widget-item__title {
+    font-size: 10px;
+    line-height: 1;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    margin-top: 45px;
+    width: 163px;
+    color: coral;
+}

@@ -1,0 +1,10 @@
+/* login widget
+*******************************/
+
+.w-login {
+margin-left: 200px;
+}
+
+.w-login._active {
+background-color: lightblue;
+}

@@ -1,0 +1,10 @@
+{{+ import BaseList from "ui/widgets/base-list/base-list"; }}
+{{+ import HomeTypeWidgetItem from "oizombie/widgets/home-type-widget-item/home-type-widget-item"; }}
+
+<div class="w-home-type-widget">
+    I AM THE HOME TYPE WIDGET
+    <div data-export-id="{{@debug}}"></div>
+
+    {{% BaseList, {options: {padding: 5, lineSize: 1}, itemClass: HomeTypeWidgetItem}, content }}
+</div>
+

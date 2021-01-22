@@ -1,0 +1,32 @@
+<!-- <embed src="
+https://apimhml.oi.net.br/oauth/oi/authorize?&state=state&
+client_id=35afd8ca-0e94-4c59-8857-a79d0a13eb84&
+response_type=code&
+scope=openid%20customer_info%20oob&
+redirect_uri=https://internettv-rms.stgonline.go.oi.com.br/oiplay/login
+"
+       height="100%"
+width="100%"></embed> -->
+
+<script type="text/javascript">
+	// 1. Create a new XMLHttpRequest object
+	let xhr = new XMLHttpRequest();
+
+	// 2. Configure it: GET-request for the URL /article/.../load
+	xhr.open('GET', 'https://apimhml.oi.net.br/oauth/oi/authorize?&state=state&client_id=35afd8ca-0e94-4c59-8857-a79d0a13eb84&response_type=code&scope=openid%20customer_info%20oob&redirect_uri=https://internettv-rms.stgonline.go.oi.com.br/oiplay/login');
+	//xhr.withCredentials = true;
+	// 3. Send the request over the network
+	 xhr.setRequestHeader('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9');
+	// xhr.setRequestHeader('Accept-Encoding', 'gzip, deflate, br');
+	// xhr.setRequestHeader('Accept-Language', 'pt-PT,pt;q=0.9,en-US;q=0.8,en;q=0.7');
+	// xhr.setRequestHeader('Connection', 'keep-alive');
+	// //xhr.setRequestHeader('Cookie', '_pm_id=220801608215317127; nvg40137=b9d355c6fda9393561c4f2fb209|0_366; _pm_sid=886901609350616750');
+	// // xhr.setRequestHeader('Host', 'apimhml.oi.net.br');
+	xhr.setRequestHeader('Sec-Fetch-Dest', 'document');
+	// // xhr.setRequestHeader('Sec-Fetch-Mode', 'navigate');
+	// // xhr.setRequestHeader('Sec-Fetch-Site', 'none');
+	// // xhr.setRequestHeader('Sec-Fetch-User', '?1');
+	// // xhr.setRequestHeader('Upgrade-Insecure-Requests', '1');
+
+	xhr.send();
+</script>
