@@ -61,14 +61,14 @@ export default class homeTypeWidget extends abstractTypeWidget {
         if (zbKey === Key.DOWN) {
             console.log('DOWN', this.contentStorage[this.iterator].scene);
             console.log(this.iterator);
-            this.maxValue = this.contentStorage.length;
+           console.log('this.contentStorage.length',this.contentStorage.length)
             this._exported.content.setSource(new List(this.contentStorage[this.iterator].scene));
-            if(this.iterator !== this.contentStorage.length){
+            if(this.iterator < this.contentStorage.length-1){
                 this.iterator += 1;
                 return true;
             }
             console.log("reached the bottom of the rail")
-
+            return true;
         }
 
         return super.processKey(zbKey);

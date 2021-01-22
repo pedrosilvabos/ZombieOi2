@@ -6,7 +6,7 @@ export const ENABLE_CONSOLE = true;
 /**
  * @const {string}
  */
-export const PLATFORM_NAME = "webos";
+export const PLATFORM_NAME = "";
 
 /**
  * @const {string}
