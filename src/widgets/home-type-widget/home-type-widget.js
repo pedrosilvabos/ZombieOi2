@@ -1,7 +1,7 @@
 import {Out, render} from 'generated/cutejs/oizombie/widgets/home-type-widget/home-type-widget.jst';
 import abstractTypeWidget from '../abstract-type-widget/abstract-type-widget';
 import List from 'ui/data/list';
-
+import Key from 'zb/device/input/key';
 
 /**
  */
@@ -12,7 +12,7 @@ export default class homeTypeWidget extends abstractTypeWidget {
     constructor() {
         super();
 
-
+        this.iterator = 0;
         /**
          * @type {Out}
          * @protected
@@ -23,15 +23,64 @@ export default class homeTypeWidget extends abstractTypeWidget {
     getContent(sceneId) {
         return Promise.resolve(this.getHomeContent(sceneId))
             .then((retVal) => {
+                console.log("retVal",retVal)
+                this.contentStorage = retVal
                 console.log("RESOLVED CATEGORY")
-                const source = new List(retVal);
+                const source = new List(retVal[0].scene);
                 console.log("source", source)
+
+                this._exported.content.on(
+                    this._exported.content.EVENT_CLICK, (eventName, items) => {
+                        console.log('clicked ', items);
+                    });
+                this._exported.content.on(
+                    this._exported.content.EVENT_FOCUS, (eventName, items) => {
+                        console.log('HOME SCENE was focused ');
+                    });
+
                 this._exported.content.setSource(source)
             })
 
 
     }
+    processKey(zbKey) {
+        if (zbKey === Key.UP) {
+            console.log('UPPP', this.contentStorage[this.iterator].scene);
+            console.log(this.iterator);
 
+
+            this._exported.content.setSource(new List(this.contentStorage[this.iterator].scene));
+            if (this.iterator !== 0) {
+                this.iterator -= 1;
+                return true;
+            }
+            console.log("reached the upper limit of the rail")
+
+            return true;
+        }
+        if (zbKey === Key.DOWN) {
+            console.log('DOWN', this.contentStorage[this.iterator].scene);
+            console.log(this.iterator);
+            this.maxValue = this.contentStorage.length;
+            this._exported.content.setSource(new List(this.contentStorage[this.iterator].scene));
+            if(this.iterator !== this.contentStorage.length){
+                this.iterator += 1;
+                return true;
+            }
+            console.log("reached the bottom of the rail")
+
+        }
+
+        return super.processKey(zbKey);
+    }
+
+    up() {
+        console.log('GOING UP');
+    }
+
+    down() {
+        console.log('GOING DOWN');
+    }
     /**
      * * @param {string} id for the current home scene
      * gets and serialized the content for the Home Scene
@@ -62,13 +111,14 @@ export default class homeTypeWidget extends abstractTypeWidget {
                                     sceneId: res['data'][i]['id'],
                                     itemType: res['data'][i]['itemType']
                                 };
-                                console.log("res.data.items", res.data.items)
+
+
                                 for (let j = 0; j < res.data[i].items.length; j++) {
                                     homeSceneItems = {
                                         title: res['data'][i]['items'][j]['title']
                                     }
 
-                                    contentReturnArray.push(homeSceneItems);
+
 
                                 }
                                 // if (res.data[i]['contentLists'].length > 0) {
@@ -89,7 +139,7 @@ export default class homeTypeWidget extends abstractTypeWidget {
                                 // 	obj.subItems = subItems; //must be array
                                 // 	console.log('finding the subitems id', subItems);
                                 // }
-
+                                contentReturnArray.push(homeSceneContent);
                             }
                             return contentReturnArray;
                         } else {
